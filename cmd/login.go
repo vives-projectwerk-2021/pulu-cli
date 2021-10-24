@@ -1,45 +1,54 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
-	"strings"
 
 	"github.com/spf13/cobra"
 )
 
 func init() {
 	rootCmd.AddCommand(loginCmd)
+	loginCmd.AddCommand(loginProductionCmd)
+	loginCmd.AddCommand(loginStagingCmd)
 }
 
 var loginCmd = &cobra.Command{
-	Use:   "login [production/staging]",
+	Use:   "login",
 	Short: "login",
-	Args:  cobra.MinimumNArgs(1),
+}
+
+var baseSSHargs = []string{
+	"-tt",
+	"devops@pulu.trikthom.com",
+	"-p",
+	"2222",
+	"-o",
+	"StrictHostKeyChecking=no",
+	"-o",
+	"UserKnownHostsFile=/dev/null",
+	"-o",
+	"LogLevel=QUIET",
+}
+
+var loginProductionCmd = &cobra.Command{
+	Use:   "production",
+	Short: "log into the production server",
 	Run: func(cmd *cobra.Command, args []string) {
-		a := []string{
-			"-tt",
-			"devops@pulu.trikthom.com",
-			"-p",
-			"2222",
-			"-o",
-			"StrictHostKeyChecking=no",
-			"-o",
-			"UserKnownHostsFile=/dev/null",
-			"-o",
-			"LogLevel=QUIET",
-		}
-
-		a = append(a, args...)
-
-		if !strings.EqualFold(args[0], "production") && !strings.EqualFold(args[0], "staging") {
-			fmt.Println("Use production or staging")
-			return
-		}
-
-		exeCmd := exec.Command("ssh", a...)
-
+		baseSSHargs = append(baseSSHargs, "production")
+		exeCmd := exec.Command("ssh", baseSSHargs...)
+		exeCmd.Stdout = os.Stdout
+		exeCmd.Stdin = os.Stdin
+		exeCmd.Stderr = os.Stderr
+		exeCmd.Run()
+	},
+}
+var loginStagingCmd = &cobra.Command{
+	Use:   "staging",
+	Short: "log into the staging server",
+	Run: func(cmd *cobra.Command, args []string) {
+		baseSSHargs = append(baseSSHargs, "staging")
+		exeCmd := exec.Command("ssh", baseSSHargs...)
 		exeCmd.Stdout = os.Stdout
 		exeCmd.Stdin = os.Stdin
 		exeCmd.Stderr = os.Stderr
