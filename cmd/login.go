@@ -25,6 +25,10 @@ var loginCmd = &cobra.Command{
 			"2222",
 			"-o",
 			"StrictHostKeyChecking=no",
+			"-o",
+			"UserKnownHostsFile=/dev/null",
+			"-o",
+			"LogLevel=QUIET",
 		}
 
 		a = append(a, args...)

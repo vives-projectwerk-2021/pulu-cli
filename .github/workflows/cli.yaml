@@ -18,5 +18,5 @@ jobs:
         artifacts: pulu-*
         token: ${{ github.token }}
         allowUpdates: true
-        prerelease: true
-        tag: v0.0.0
+        prerelease: false
+        tag: latest
