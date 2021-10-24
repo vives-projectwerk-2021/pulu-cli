@@ -14,3 +14,16 @@ var (
 func Execute() error {
 	return rootCmd.Execute()
 }
+
+var baseSSHargs = []string{
+	"-tt",
+	"devops@pulu.trikthom.com",
+	"-p",
+	"2222",
+	"-o",
+	"StrictHostKeyChecking=no",
+	"-o",
+	"UserKnownHostsFile=/dev/null",
+	"-o",
+	"LogLevel=QUIET",
+}

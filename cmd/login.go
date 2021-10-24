@@ -18,24 +18,11 @@ var loginCmd = &cobra.Command{
 	Short: "login",
 }
 
-var baseSSHargs = []string{
-	"-tt",
-	"devops@pulu.trikthom.com",
-	"-p",
-	"2222",
-	"-o",
-	"StrictHostKeyChecking=no",
-	"-o",
-	"UserKnownHostsFile=/dev/null",
-	"-o",
-	"LogLevel=QUIET",
-}
-
 var loginProductionCmd = &cobra.Command{
 	Use:   "production",
 	Short: "log into the production server",
 	Run: func(cmd *cobra.Command, args []string) {
-		baseSSHargs = append(baseSSHargs, "production")
+		baseSSHargs = append(baseSSHargs, "login", "production")
 		exeCmd := exec.Command("ssh", baseSSHargs...)
 		exeCmd.Stdout = os.Stdout
 		exeCmd.Stdin = os.Stdin
@@ -47,7 +34,7 @@ var loginStagingCmd = &cobra.Command{
 	Use:   "staging",
 	Short: "log into the staging server",
 	Run: func(cmd *cobra.Command, args []string) {
-		baseSSHargs = append(baseSSHargs, "staging")
+		baseSSHargs = append(baseSSHargs, "login", "staging")
 		exeCmd := exec.Command("ssh", baseSSHargs...)
 		exeCmd.Stdout = os.Stdout
 		exeCmd.Stdin = os.Stdin
