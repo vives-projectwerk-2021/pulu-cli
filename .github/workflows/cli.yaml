@@ -10,10 +10,12 @@ jobs:
     - uses: actions/setup-go@v2
       with:
         go-version: '1.16.3'
-    - run: go build pulu.go
+    - run: env GOOS=darwin GOARCH=amd64 go build -o pulu-macos . 
+    - run: env GOOS=linux GOARCH=amd64 go build -o pulu-linux .
+    - run: env GOOS=windows GOARCH=amd64 go build -o pulu-windows .
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: 'pulu'
+        artifacts: pulu-*
         token: ${{ github.token }}
         allowUpdates: true
         prerelease: true
