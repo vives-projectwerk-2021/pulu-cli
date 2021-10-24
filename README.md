@@ -1,4 +1,8 @@
-# pulu-cli
+# Pulu CLI
+## Usage
+### Login
+You can easly login into the production or staging servers by running `pulu login [production/staging]` \
+When logging in, the [proxy gateway](https://github.com/vives-projectwerk-2021/proxy-gateway) will check if you have the right permissions. (you must be in the devops group)
 
 ## Install from release
 ### Linux
