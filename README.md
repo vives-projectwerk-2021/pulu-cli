@@ -15,9 +15,18 @@ sudo curl -L https://github.com/vives-projectwerk-2021/pulu-cli/releases/latest/
 sudo curl -L https://github.com/vives-projectwerk-2021/pulu-cli/releases/latest/download/pulu-macos -o /usr/local/bin/pulu && sudo chmod +x /usr/local/bin/pulu
 ```
 
-<!-- ### Windows
-```sh
-``` -->
+### Windows
+
+![make folder](./img/folderpulu.png)
+
+![make folder](./img/pulu-exe.png)
+
+![make folder](./img/search.png)
+
+![make folder](./img/systemproperties.png)
+
+![make folder](./img/editenv.png)
+
 
 ## Install from source
 ```sh
