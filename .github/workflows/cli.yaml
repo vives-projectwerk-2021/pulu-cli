@@ -15,7 +15,7 @@ jobs:
     - run: env GOOS=windows GOARCH=amd64 go build -o pulu.exe .
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: pulu*
+        artifacts: "pulu-*,pulu.exe"
         token: ${{ github.token }}
         allowUpdates: true
         prerelease: false
