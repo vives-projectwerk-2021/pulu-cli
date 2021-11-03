@@ -53,7 +53,7 @@ Download the pulu.exe for windows.
 
 ##### check if the pulu-cli works
 
-´´´bash
+```bash
 (base) PS C:\Users\simon> pulu
 pulu is a command line interface for managing the pulu infrastructure.
 
@@ -69,7 +69,7 @@ Flags:
   -h, --help   help for pulu
 
 Use "pulu [command] --help" for more information about a command.
-´´´
+```
 
 ## Install from source
 
