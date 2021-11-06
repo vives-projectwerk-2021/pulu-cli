@@ -26,4 +26,6 @@ var baseSSHargs = []string{
 	"UserKnownHostsFile=/dev/null",
 	"-o",
 	"LogLevel=QUIET",
+	"-o",
+	"HostKeyAlgorithms=+ssh-rsa",
 }
