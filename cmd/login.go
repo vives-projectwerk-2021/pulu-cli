@@ -11,6 +11,7 @@ func init() {
 	rootCmd.AddCommand(loginCmd)
 	loginCmd.AddCommand(loginProductionCmd)
 	loginCmd.AddCommand(loginStagingCmd)
+	loginCmd.AddCommand(loginPiCmd)
 }
 
 var loginCmd = &cobra.Command{
@@ -35,6 +36,19 @@ var loginStagingCmd = &cobra.Command{
 	Short: "log into the staging server",
 	Run: func(cmd *cobra.Command, args []string) {
 		baseSSHargs = append(baseSSHargs, "login", "staging")
+		exeCmd := exec.Command("ssh", baseSSHargs...)
+		exeCmd.Stdout = os.Stdout
+		exeCmd.Stdin = os.Stdin
+		exeCmd.Stderr = os.Stderr
+		exeCmd.Run()
+	},
+}
+
+var loginPiCmd = &cobra.Command{
+	Use:   "pi",
+	Short: "log into the pi",
+	Run: func(cmd *cobra.Command, args []string) {
+		baseSSHargs = append(baseSSHargs, "login", "pi")
 		exeCmd := exec.Command("ssh", baseSSHargs...)
 		exeCmd.Stdout = os.Stdout
 		exeCmd.Stdin = os.Stdin
