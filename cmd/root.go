@@ -11,7 +11,7 @@ var (
 		Short: "pulu is a command line interface for managing the pulu infrastructure.",
 	}
 
-	proxy = proxytunnel.NewProxyClient("pulu.trikthom.com", 2222)
+	proxy = proxytunnel.NewProxyClient("pulu.trikthom.com", 8020)
 )
 
 func Execute() error {
