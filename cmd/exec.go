@@ -8,6 +8,7 @@ func init() {
 	rootCmd.AddCommand(execCmd)
 	execCmd.AddCommand(execProductionCmd)
 	execCmd.AddCommand(execStagingCmd)
+	execCmd.AddCommand(execDevboardCmd)
 }
 
 var execCmd = &cobra.Command{
@@ -27,5 +28,12 @@ var execStagingCmd = &cobra.Command{
 	Short: "execute a command om the staging server",
 	Run: func(cmd *cobra.Command, args []string) {
 		proxy.Execute(2, args...)
+	},
+}
+var execDevboardCmd = &cobra.Command{
+	Use:   "devboard",
+	Short: "execute a command om the devboard",
+	Run: func(cmd *cobra.Command, args []string) {
+		proxy.Execute(3, args...)
 	},
 }
