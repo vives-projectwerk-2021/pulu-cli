@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"os"
-	"os/exec"
-
 	"github.com/spf13/cobra"
 )
 
@@ -22,11 +19,7 @@ var proxyProductionCmd = &cobra.Command{
 	Use: "production",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 1 {
-			exeCmd := exec.Command("ssh", append(baseSSHargs, "proxy", "production", args[0])...)
-			exeCmd.Stdout = os.Stdout
-			exeCmd.Stdin = os.Stdin
-			exeCmd.Stderr = os.Stderr
-			exeCmd.Run()
+			proxy.Proxy(1, args[0])
 		}
 	},
 }
@@ -35,11 +28,7 @@ var proxyStagingCmd = &cobra.Command{
 	Use: "staging",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 1 {
-			exeCmd := exec.Command("ssh", append(baseSSHargs, "proxy", "staging", args[0])...)
-			exeCmd.Stdout = os.Stdout
-			exeCmd.Stdin = os.Stdin
-			exeCmd.Stderr = os.Stderr
-			exeCmd.Run()
+			proxy.Proxy(2, args[0])
 		}
 	},
 }
